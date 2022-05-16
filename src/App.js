@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import "./App.css";
 
 function App() {
+  /*스크립트 영역*/
+  const name = "리액트";
+  const style = {
+    backgroundColor: "black",
+    color: "aqua",
+    fontSize: "45px",
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/*요소가 여러개인 경우 부모 요소에 감싸여 있어야 에러 안남*/}
+      <div style={style} className="react">
+        {name}
+      </div>
+      <div
+        className="act" //주석 테스트
+      >
+        <input></input>
+      </div>
+      <input style={{ width: "50px" }}></input>
+      <br></br>
+      <input />
+    </>
   );
 }
 
