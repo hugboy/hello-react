@@ -1,54 +1,54 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-class EventPractice extends Component {
-  state = {
+import React from 'react';
+
+const EventPractice = () => {
+  const [form, setForm] = useState({
     username: '',
     message: '',
-  };
-
-  handleChange = (e) => {
-    this.setState({
+  });
+  const { username, message } = form;
+  const onChange = (e) => {
+    const nextForm = {
+      ...form,
       [e.target.name]: e.target.value,
-      e,
-    });
+    };
+    setForm(nextForm);
   };
-  handleClick = () => {
-    alert(this.state.username + ':' + this.state.message);
-    this.setState({
-      message: '',
+  const onClick = () => {
+    alert(username + ':' + message);
+    setForm({
       username: '',
+      message: '',
     });
   };
-
-  handleKeyPress = (e) => {
+  const onKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.handleClick();
+      onClick();
     }
   };
-
-  render() {
-    return (
-      <div>
-        <h1>이벤트 연습</h1>
-        <input
-          type="text"
-          name="username"
-          placeholder="사용자명"
-          value={this.state.username}
-          onChange={this.handleChange}
-        ></input>
-        <input
-          type="text"
-          name="message"
-          placeholder="아무거나 입력해 보세요"
-          value={this.state.message}
-          onChange={this.handleChange}
-        ></input>
-        <h5>{this.state.message}</h5>
-        <button onClick={this.handleClick}>확인</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>이벤트 연습</h1>
+      <input
+        type="text"
+        name="username"
+        placeholder="사용자명"
+        value={username}
+        onChange={onChange}
+        style={{ width: '50px' }}
+      ></input>
+      <input
+        type="text"
+        name="message"
+        placeholder="아무거나 입력해 보세요"
+        value={message}
+        onChange={onChange}
+        onKeyPress={onKeyPress}
+      ></input>
+      <button onClick={onClick}>확인</button>
+    </div>
+  );
+};
 
 export default EventPractice;
