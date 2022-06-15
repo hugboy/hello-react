@@ -12,7 +12,7 @@ class LifeCycleSample extends Component {
     super(props);
     console.log('constructor');
   }
-  /*Load, Update*/
+  /*Load, Update Props에서 받아온 값을 State에 동기화 시키는 용도*/
   static getDerivedStateFromProps(nextProps, prevState) {
     console.log('getDerivedStateFromProps');
     if (nextProps.color !== prevState.color) {
@@ -56,13 +56,6 @@ class LifeCycleSample extends Component {
     }
   }
 
-  /*컴포넌트 렌더링중 에러발생시*/
-  componentDidCatch(error, info) {
-    this.setState({
-      error: true,
-    });
-    console.log('componentDidCatch', { error, info });
-  }
   render() {
     console.log('render');
     const style = {
@@ -70,6 +63,7 @@ class LifeCycleSample extends Component {
     };
     return (
       <div>
+        {this.props.missing.value}
         <h1 style={style} ref={(ref) => (this.myRef = ref)}>
           {this.state.number}
         </h1>
